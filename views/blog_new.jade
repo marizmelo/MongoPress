@@ -1,0 +1,13 @@
+extends layout
+block mainContent
+  h2= locals.title
+  form( method="post")
+      div
+          div
+              span Title :
+              input(type="text", name="title", id="editArticleTitle")
+          div
+              span Body :
+              textarea( name="body", rows=20, id="editArticleBody)
+          div#editArticleSubmit
+              input(type="submit", value="Send")

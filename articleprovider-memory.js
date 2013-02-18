@@ -25,7 +25,6 @@ ArticleProvider.prototype.findById = function ( id, callback ) {
 ArticleProvider.prototype.save = function ( articles, callback ) {
   var article = null;
 
-
   if ( typeof( articles.length ) == "undefined" ) {
     articles = [ articles ];
   }//if
@@ -42,7 +41,8 @@ ArticleProvider.prototype.save = function ( articles, callback ) {
         article.comments[ j ].created_at = new Date();
       }//for
     }//if_else
-    this.dummyData[ this.dummyData.length ] = article;
+    // Includes data to the end of array
+    this.dummyData[ this.dummyData.length ] = article;  
   }//for
   callback( null, articles );
 };
@@ -54,4 +54,4 @@ new ArticleProvider().save([
   {title: 'Post three', body: 'Body three'}
 ], function(error, articles){});
 
-exports.ArticleProvider = ArticleProvider;
+exports.ArticleProvider = ArticleProvider; //gives NodeJS main application access to stored data
