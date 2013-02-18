@@ -4,5 +4,9 @@
 , "version" : "0.0.1"
 , "dependencies" : {
     "express" : ">=3.0.0"
+  , "stylus" : ">=0.32.0"
+  , "consolidate" : ">=0.8.0"
+  , "redis" : ">=0.8.1"
+  , "jade" : ">=0.28.0"
   }
 }
