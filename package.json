@@ -1,0 +1,8 @@
+{
+  "name" : "mongopress"
+, "description" : "NodeJS, Express, MongoDB blog"
+, "version" : "0.0.1"
+, "dependencies" : {
+    "express" : ">=3.0.0"
+  }
+}
