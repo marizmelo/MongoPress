@@ -1,45 +1,50 @@
 var articleCounter = 1;
 
-ArticleProvider = function(){};
+ArticleProvider = function () {}; //constructor
 
-ArticleProvider.prototype.dummyData = [];
+ArticleProvider.prototype.dummyData = []; //holds data
 
-ArticleProvider.prototype.findAll = function(callback) {
-  callback( null, this.dummyData )
+// Return all data
+ArticleProvider.prototype.findAll = function ( callback ) {
+  callback ( null, this.dummyData );
 };
 
-ArticleProvider.prototype.findById = function(id, callback) {
+// Return data based on ID number
+ArticleProvider.prototype.findById = function ( id, callback ) {
   var result = null;
-  for(var i =0;i<this.dummyData.length;i++) {
-    if( this.dummyData[i]._id == id ) {
-      result = this.dummyData[i];
+  for ( var i =0; i < this.dummyData.length; i++ ) {
+    if ( this.dummyData[i]._id == id ) {
+      result = this.dummyData [ i ];
       break;
-    }
-  }
-  callback(null, result);
+    }//if
+  }//for
+  callback ( null, result );
 };
 
-ArticleProvider.prototype.save = function(articles, callback) {
+// Insert new records on data
+ArticleProvider.prototype.save = function ( articles, callback ) {
   var article = null;
 
-  if( typeof(articles.length)=="undefined")
-    articles = [articles];
 
-  for( var i =0;i< articles.length;i++ ) {
-    article = articles[i];
+  if ( typeof( articles.length ) == "undefined" ) {
+    articles = [ articles ];
+  }//if
+
+  for ( var i =0; i < articles.length; i++ ) {
+    article = articles[ i ];
     article._id = articleCounter++;
-    article.created_at = new Date();
+    article.created_at = new Date ();
 
-    if( article.comments === undefined )
+    if ( article.comments === undefined ) {
       article.comments = [];
-
-    for(var j =0;j< article.comments.length; j++) {
-      article.comments[j].created_at = new Date();
-    }
-    
-    this.dummyData[this.dummyData.length]= article;
-  }
-  callback(null, articles);
+    } else {
+      for ( var j = 0; j < article.comments.length; j++ ) {
+        article.comments[ j ].created_at = new Date();
+      }//for
+    }//if_else
+    this.dummyData[ this.dummyData.length ] = article;
+  }//for
+  callback( null, articles );
 };
 
 /* Lets bootstrap with dummy data */
