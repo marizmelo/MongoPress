@@ -27,22 +27,20 @@ var articleProvider = new ArticleProvider('localhost', 27017);
 
 app.get('/', function(req, res){
   articleProvider.findAll( function(error,docs){
-    res.render('index.jade', { 
-      locals : {
+    res.render('index.jade',
+      {
         title : 'Recent posts',
         articles : docs
-      }
-    });
+      });
   })
 });
 
 
 app.get('/blog/new', function(req, res) {
-    res.render('blog_new.jade', {
-      locals : {
+    res.render('blog_new.jade', 
+      {
         title: 'New Post'
-      }
-    });
+      });
 });
 
 app.post('/blog/new', function(req, res){
@@ -57,10 +55,9 @@ app.post('/blog/new', function(req, res){
 app.get('/blog/:id', function(req, res) {
     articleProvider.findById(req.params.id, function(error, article) {
         res.render('blog_show.jade',
-        { locals: {
-            title: article.title,
-            article : article
-        }
+        {
+          title: article.title,
+          article : article
         });
     });
 });
