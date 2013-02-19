@@ -59,7 +59,7 @@ app.get('/blog/:id', function(req, res) {
         res.render('blog_show.jade',
         { locals: {
             title: article.title,
-            article:article
+            article : article
         }
         });
     });

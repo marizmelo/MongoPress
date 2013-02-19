@@ -1,0 +1,22 @@
+extends layout
+block mainContent
+  h2= locals.title
+  div.article
+      div.created_at= locals.article.created_at
+      div.title= locals.article.title
+      div.body= locals.article.body
+      - each comment in locals.article.comments
+        div.comment
+          div.person= comment.person
+          div.comment= comment.comment
+      div
+        form( method="post", action="/blog/addComment")
+          input( type="hidden", name="_id", value= locals.article._id.toHexString())
+          div
+            span Author :
+            input( type="text", name="person", id="addCommentPerson")
+          div
+            span Comment :
+            textarea( name="comment", rows=5, id="addCommentComment")
+          div#editArticleSubmit
+            input(type="submit", value="Send")

@@ -5,7 +5,7 @@ var BSON = require( 'mongodb' ).BSON;
 var ObjectID = require( 'mongodb' ).ObjectID;
 
 ArticleProvider = function ( host, port ) {
-  this.db = new Db( 'node-mongo-blog', new Server( host, port, { auto_reconnect: true }, {} ) );
+  this.db = new Db( 'node-mongo-blog', new Server( host, port, { auto_reconnect: true }, {} ), {w: 1} );
   this.db.open(function(){});
 };
 
@@ -65,6 +65,21 @@ ArticleProvider.prototype.save = function(articles, callback) {
         });
       }
     });
+};
+
+ArticleProvider.prototype.addCommentToArticle = function(articleId, comment, callback) {
+  this.getCollection(function(error, article_collection) {
+    if( error ) callback( error );
+    else {
+      article_collection.update(
+        {_id: article_collection.db.bson_serializer.ObjectID.createFromHexString(articleId)},
+        {"$push": {comments: comment}},
+        function(error, article){
+          if( error ) callback(error);
+          else callback(null, article)
+        });
+    }
+  });
 };
 
 exports.ArticleProvider = ArticleProvider;
