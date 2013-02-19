@@ -1,5 +1,5 @@
 var express = require('express');
-var ArticleProvider = require('./articleprovider-memory').ArticleProvider;
+var ArticleProvider = require('./articleprovider-mongodb').ArticleProvider;
 
 var app = module.exports = express();
 
@@ -22,7 +22,8 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
-var articleProvider= new ArticleProvider();
+//var articleProvider= new ArticleProvider();
+var articleProvider = new ArticleProvider('localhost', 27017);
 
 app.get('/', function(req, res){
   articleProvider.findAll( function(error,docs){
@@ -53,4 +54,27 @@ app.post('/blog/new', function(req, res){
     });
 });
 
+app.get('/blog/:id', function(req, res) {
+    articleProvider.findById(req.params.id, function(error, article) {
+        res.render('blog_show.jade',
+        { locals: {
+            title: article.title,
+            article:article
+        }
+        });
+    });
+});
+
+app.post('/blog/addComment', function(req, res) {
+    articleProvider.addCommentToArticle(req.param('_id'), {
+        person: req.param('person'),
+        comment: req.param('comment'),
+        created_at: new Date()
+       } , function( error, docs) {
+           res.redirect('/blog/' + req.param('_id'))
+       });
+});
+
 app.listen(4040);
+
+console.log("Express server listening on port %d in %s mode", app.port, app.settings.env);
