@@ -74,4 +74,4 @@ app.post('/blog/addComment', function(req, res) {
 
 app.listen(4040);
 
-console.log("Express server listening on port %d in %s mode", app.port, app.settings.env);
+console.log("Express server listening on port %d in %s mode", 4040, app.settings.env);

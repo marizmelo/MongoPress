@@ -20,5 +20,16 @@ This should take care of installing the dependencies.
 * Jade (html)
 * Stylus (css)
 * consolidate (consolidate syntax)
-* redis (in memory storage)
+* mongodb (MongoDB api)
 
+Make sure your MongoDB is installed and running.
+
+    mongod
+
+Run your application
+
+    nonde app-simple.js
+
+Using your browser go to: http://0.0.0.0:4040
+
+You are all set.
