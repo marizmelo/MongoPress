@@ -19,7 +19,7 @@ a:hover{
   color: #ffa288;
 }
 
-header input, header textarea{
+input, textarea{
   margin-right:0;
   width : 400px;
 }
@@ -34,4 +34,9 @@ header h2{
 
 header input[type=submit]{
   margin: 0;
+}
+
+.created_at{
+  font-size: 80%;
+  color: #bbb;
 }

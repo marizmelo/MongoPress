@@ -5,8 +5,10 @@ html.responsive
     link(rel='stylesheet', href='/css/xtyle.css')
     link(rel='stylesheet', href='/css/nodepress.css')
   body
+    div.padding(style="position: fixed; right: 0")
+      a(href="http://github.com/marizmelo/mongopress", style="color: white") Fork on GitHub
     header.padding2x.center(style="background: #ee7962", class="container")
-      h1.padding2x(style="font-size: 400%")
+      h1.padding2x(style="font-size: 380%")
         a.text-shadow(href='/') { NodePress }
       h2.lighter="NodeJS, and MongoDB microblogging system using "
         a(href='http://xtyle.xchema.com') xtyle
@@ -19,7 +21,6 @@ html.responsive
                 textarea.border-radius( name="body", rows=20, id="editArticleBody", placeholder="Your awesome content...")
               div#editArticleSubmit
                   input.dark.border-radius(type="submit", value="Post Now!", style="padding: 15px 40px")
-
 
     block mainContent
 

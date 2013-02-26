@@ -3,6 +3,8 @@ mongopress
 
 NodeJS, Express, MongoDB blog
 
+![nodepress preview image](http://emoriz.com/github/nodepress.png)
+
 Installation
 ------------
 Software dependency list

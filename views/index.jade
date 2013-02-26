@@ -8,7 +8,7 @@ block mainContent
                 div.title 
                   h5
                     a(href="/blog/"+article._id)!= article.title
-                div.created_at(style="font-size: 80%;color: #bbb")= article.created_at
+                div.created_at= article.created_at
                 br
                 div.body= article.body
   br
