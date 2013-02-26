@@ -9,9 +9,9 @@ app.configure(function(){
   app.set('view options', { layout: false });
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(require('stylus').middleware({ src: __dirname + '/public' }));
+  app.use(require('stylus').middleware({ src: __dirname + '/xtyle' }));
   app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
+  app.use(express.static(__dirname + '/xtyle'));
 });
 
 app.configure('development', function(){
@@ -43,7 +43,7 @@ app.get('/blog/new', function(req, res) {
       });
 });
 
-app.post('/blog/new', function(req, res){
+app.post('/', function(req, res){
     articleProvider.save({
         title: req.param('title'),
         body: req.param('body')

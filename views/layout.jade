@@ -1,9 +1,25 @@
 !!!
-html
+html.responsive
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/css/xtyle.css')
+    link(rel='stylesheet', href='/css/nodepress.css')
   body
-    h1
-      a(href='/') NodePress
+    div.center(style="background: #ee7962", class="container")
+      h1.padding2x(style="font-size: 400%")
+        a(href='/') { NodePress }
+      form( method="post")
+        div
+            div
+              input.border-radius(type="text", name="title", id="editArticleTitle", placeholder="Title")
+            div
+              textarea.border-radius( name="body", rows=20, id="editArticleBody", style="height: 50px", placeholder="Your awesome content...")
+            div#editArticleSubmit
+                input.border-radius(type="submit", value="Post Now!", style="padding: 8px 40px")
+
+
     block mainContent
+
+
+
+
