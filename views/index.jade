@@ -1,10 +1,14 @@
 extends layout
 block mainContent    
-  h2= title 
-  #articles
-    - each article in articles
-      div.article
-        div.created_at= article.created_at
-        div.title 
-            a(href="/blog/"+article._id)!= article.title
-        div.body= article.body
+  div.center.margin2x
+      - each article in articles
+        #articles
+          section.display-inline-block.border-radius2x(style="width: 400px;")
+              div.article
+                div.title 
+                  h5
+                    a(href="/blog/"+article._id)!= article.title
+                div.created_at(style="font-size: 80%;color: #bbb")= article.created_at
+                br
+                div.body= article.body
+  br

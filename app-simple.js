@@ -44,12 +44,16 @@ app.get('/blog/new', function(req, res) {
 });
 
 app.post('/', function(req, res){
-    articleProvider.save({
-        title: req.param('title'),
-        body: req.param('body')
-    }, function( error, docs) {
-        res.redirect('/')
-    });
+    if(req.param('title') && req.param('body')){
+      articleProvider.save({
+          title: req.param('title'),
+          body: req.param('body')
+      }, function( error, docs) {
+          res.redirect('/')
+      });
+    }else{
+      res.redirect('/')
+    }
 });
 
 app.get('/blog/:id', function(req, res) {

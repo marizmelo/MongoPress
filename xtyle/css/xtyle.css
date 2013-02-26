@@ -1595,7 +1595,7 @@ input[type=email]:focus,
 input[type=password]:focus,
 input[type=number]:focus,
 textarea:focus {
-  border-color: #1ab2ff;
+  border-color: #ee7962;
   -webkit-transition: border-color 0.1s linear;
      -moz-transition: border-color 0.1s linear;
       -ms-transition: border-color 0.1s linear;

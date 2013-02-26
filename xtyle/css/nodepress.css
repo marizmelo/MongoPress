@@ -12,6 +12,12 @@ header h2 a{
 header h2 a:hover{
   color: #93483a;
 }
+a{
+  color: #ee7962;
+}
+a:hover{
+  color: #ffa288;
+}
 
 header input, header textarea{
   margin-right:0;
