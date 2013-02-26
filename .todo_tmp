@@ -1,10 +1,8 @@
-+ localstorage
-+ xtyle theme
-+ make easy to switch between Mongo and JavaScript
-+ add xtyle as design framework
 + facebook authentication (future)
-+ create new article
-+ show the list of all the articles
-+ show an individual article and its comments
-+ comment on an article
 - Be able to post from homepage
+- xtyle theme
+- add xtyle as design framework
+- create new article
+- show the list of all the articles
+- show an individual article and its comments
+- comment on an article

@@ -35,13 +35,12 @@ app.get('/', function(req, res){
   })
 });
 
-
-app.get('/blog/new', function(req, res) {
+/*app.get('/blog/new', function(req, res) {
     res.render('blog_new.jade', 
       {
         title: 'New Post'
       });
-});
+});*/
 
 app.post('/', function(req, res){
     if(req.param('title') && req.param('body')){
@@ -67,15 +66,20 @@ app.get('/blog/:id', function(req, res) {
 });
 
 app.post('/blog/addComment', function(req, res) {
+  if(req.param('person') && req.param('comment')){
     articleProvider.addCommentToArticle(req.param('_id'), {
         person: req.param('person'),
         comment: req.param('comment'),
         created_at: new Date()
        } , function( error, docs) {
-           res.redirect('/blog/' + req.param('_id'))
+           res.redirect('/blog/' + req.param('_id'));
        });
+  }else{
+    res.redirect('/blog/' + req.param('_id'));
+  }
 });
 
 app.listen(4040);
 
-console.log("Express server listening on port %d in %s mode", 4040, app.settings.env);
+//console.log("Express server listening on port %d in %s mode", 4040, app.settings.env);
+console.log("Server running at: http://0.0.0.0:%d", 4040);

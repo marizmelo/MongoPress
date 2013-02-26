@@ -2,21 +2,21 @@ extends layout
 block mainContent
   div.article.center
     section.display-inline-block.border-radius2x(style="max-width: 400px;")
-      h5= locals.title
-      div.created_at= locals.article.created_at
+      h5= title
+      div.created_at= article.created_at
       br
-      div.title= locals.article.title
-      div.body= locals.article.body
+      div.title= article.title
+      div.body= article.body
       br
       br
-      - each comment in locals.article.comments
+      - each comment in locals.article.comments.reverse()
         div.comment.padding2x.margin-bottom.border-radius.background-color
           div.person
             h6=comment.person
           div.comment= comment.comment
       div
         form( method="post", action="/blog/addComment")
-          input( type="hidden", name="_id", value= locals.article._id.toHexString())
+          input( type="hidden", name="_id", value= article._id.toHexString())
           div
             input.border-radius( type="text", name="person", id="addCommentPerson", placeholder="Author")
           div
