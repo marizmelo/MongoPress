@@ -1,0 +1,31 @@
+header h1 a{
+  color: white;
+}
+header h1 a:hover{
+  color: white;
+}
+
+header h2 a{
+  color: #93483a;
+  text-decoration: underline;
+}
+header h2 a:hover{
+  color: #93483a;
+}
+
+header input, header textarea{
+  margin-right:0;
+  width : 400px;
+}
+
+header textarea{
+  height: 100px;
+}
+
+header h2{
+  color: #93483a;
+}
+
+header input[type=submit]{
+  margin: 0;
+}
