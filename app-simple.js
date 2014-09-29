@@ -1,26 +1,35 @@
-var express = require('express');
-var ArticleProvider = require('./articleprovider-mongodb').ArticleProvider;
+var express = require('express'),
+    ArticleProvider = require('./articleprovider-mongodb').ArticleProvider,
+    bodyParser = require('body-parser'),
+    methodOverride = require('method-override');
 
-var app = module.exports = express();
+    app = module.exports = express(),
+    env = process.env.NODE_ENV || 'development';
 
-app.configure(function(){
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
-  app.set('view options', { layout: false });
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(require('stylus').middleware({ src: __dirname + '/xtyle' }));
-  app.use(app.router);
-  app.use(express.static(__dirname + '/xtyle'));
-});
 
-app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-});
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+app.set('view options', { layout: false });
+app.use(bodyParser());
+app.use(methodOverride());
+app.use(require('stylus').middleware({ src: __dirname + '/xtyle' }));
+app.use(express.static(__dirname + '/xtyle'));
+app.use(clientErrorHandler);
+app.use(errorHandler);
 
-app.configure('production', function(){
-  app.use(express.errorHandler());
-});
+
+function clientErrorHandler(err, req, res, next) {
+  if (req.xhr) {
+    res.status(500).send({ error: 'Something blew up!' });
+  } else {
+    next(err);
+  }
+}
+
+function errorHandler(err, req, res, next) {
+  res.status(500);
+  res.render('error', { error: err });
+}
 
 //var articleProvider= new ArticleProvider();
 var articleProvider = new ArticleProvider('localhost', 27017);
@@ -32,11 +41,11 @@ app.get('/', function(req, res){
         title : 'Recent posts',
         articles : docs
       });
-  })
+  });
 });
 
 /*app.get('/blog/new', function(req, res) {
-    res.render('blog_new.jade', 
+    res.render('blog_new.jade',
       {
         title: 'New Post'
       });
@@ -48,10 +57,10 @@ app.post('/', function(req, res){
           title: req.param('title'),
           body: req.param('body')
       }, function( error, docs) {
-          res.redirect('/')
+          res.redirect('/');
       });
     }else{
-      res.redirect('/')
+      res.redirect('/');
     }
 });
 
