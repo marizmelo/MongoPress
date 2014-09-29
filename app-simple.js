@@ -1,8 +1,7 @@
 var express = require('express'),
     ArticleProvider = require('./articleprovider-mongodb').ArticleProvider,
     bodyParser = require('body-parser'),
-    methodOverride = require('method-override'),
-    errorHandler = require('error-handler'),
+    methodOverride = require('method-override');
 
     app = module.exports = express(),
     env = process.env.NODE_ENV || 'development';

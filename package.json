@@ -12,6 +12,5 @@
   , "mongodb" : ">=1.2.12"
   , "body-parser": ">=1.9.0"
   , "method-override": ">=2.2.0"
-  , "error-handler": ">=1.0.0"
   }
 }
